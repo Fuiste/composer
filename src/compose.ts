@@ -32,17 +32,8 @@ export const compose = <
 >(
   ...fns: Fns
 ): ComposedFn<Fns> =>
-  ((deps) => (args) => {
-    let currentArg = args;
-    let lastResult: Result<any, any> = succeed(undefined);
-
-    for (const fn of fns) {
-      const result = fn(deps)(currentArg);
-      if (result.status === "failure") return result;
-
-      currentArg = result.value;
-      lastResult = result;
-    }
-
-    return lastResult;
-  }) as ComposedFn<Fns>;
+  ((deps) => (args) =>
+    fns.reduce<Result<any, any>>(
+      (acc, fn) => (acc.status === "failure" ? acc : fn(deps)(acc.value)),
+      succeed(args)
+    )) as ComposedFn<Fns>;

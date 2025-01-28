@@ -62,13 +62,4 @@ export type ComposedFn<Fns extends CoreFn<any, any, any, any>[]> = Fns extends [
       : never
     : never;
 
-export const compose = <
-  Fns extends [CoreFn<any, any, any, any>, ...CoreFn<any, any, any, any>[]],
->(
-  ...fns: Fns
-): ComposedFn<Fns> =>
-  ((deps) => (args) =>
-    fns.reduce<Result<any, any>>(
-      (acc, fn) => (acc.status === "failure" ? acc : fn(deps)(acc.value)),
-      succeed(args)
-    )) as ComposedFn<Fns>;
+
