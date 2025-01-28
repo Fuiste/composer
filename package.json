@@ -1,0 +1,26 @@
+{
+  "name": "composer",
+  "version": "0.0.1",
+  "description": "A simple, pragmatic functional library for TypeScript.",
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "format": "prettier --write 'src/**/*.{ts,tsx}'"
+  },
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [],
+  "author": "William Pelrine <drawncloser@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^9.19.0",
+    "prettier": "^3.4.2",
+    "tsup": "^8.3.6",
+    "typescript": "^5.7.3"
+  }
+}
