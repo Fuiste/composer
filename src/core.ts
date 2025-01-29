@@ -10,16 +10,3 @@ export type CoreFn<
   D extends Dependencies<any, string>,
   A,
 > = (deps: D) => (args: A) => Result<R, E>;
-
-export const define =
-  <
-    D extends Dependencies<any, string>,
-    R = any,
-    E extends TaggedCause<any, string> = TaggedCause<any, string>,
-    A = any,
-  >(
-    fn: (deps: D, args: A) => Result<R, E>
-  ): CoreFn<R, E, D, A> =>
-  (deps) =>
-  (args) =>
-    fn(deps, args);
